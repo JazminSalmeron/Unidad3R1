@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>#{str.formTitle}</title>
+                       </h:head>
+        <h:body>
+            <ui:composition template="/templates/template.xhtml" >
+                <ui:define name="contenido" >
+                    <h2>#{str.formHeader}</h2>
+                    <p:fieldset legend="#{str.actorLegendForm}" >
+                    <h:form>
+                        <h:panelGrid columns="1">
+                            <p:inputText placeholder="#{str.nameActorPrompt}" value="#{actorBean.actor.nombreActor}" ></p:inputText>
+                           
+                            <p:inputText placeholder="#{str.lastNamePrompt}" value="#{actorBean.actor.apellidos}" type="string" ></p:inputText> 
+                            <p:inputText placeholder="#{str.typeActorPrompt}" value="#{actorBean.actor.tipo}" type="string" ></p:inputText> 
+                            <p:selectOneMenu value="#{actorBean.actor.guion.idGuion}" >
+                                 <f:selectItems value="#{actorBean.guiones}" var="ac" itemLabel="#{ac.titulo}" itemValue="#{ac.idGuion}" ></f:selectItems>
+                                </p:selectOneMenu>
+                                
+                                
+                                <p:selectOneMenu value="#{actorBean.actor.teatro.idTeatro}" >
+                                <f:selectItems value="#{actorBean.teatros}" var="a" itemLabel="#{a.nombre}" itemValue="#{a.idTeatro}" ></f:selectItems>
+                            </p:selectOneMenu>
+                                
+                                
+                                
+                                
+                                
+                        </h:panelGrid>
+                        <p:commandButton value="#{str.buttonSave}"  action="#{actorBean.guardar()}" ></p:commandButton>
+                        <p:commandButton value="#{str.buttonDelete}" action="#{actorBean.eliminar()}" ></p:commandButton>
+                        <p:commandButton value="#{str.buttonCancel}" action="#{actorBean.cancelar()}" ></p:commandButton>
+                    </h:form>
+                    </p:fieldset>
+                </ui:define>
+            </ui:composition>
+    </h:body>
+</html>
